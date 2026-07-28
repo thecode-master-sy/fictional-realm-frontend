@@ -12,18 +12,20 @@ export const showErrorToast = ({
 }) => {
   toast.custom((id) => (
     <div
-      className="flex w-full items-center gap-3 bg-card z-1000 rounded-lg border border-red-500/50  px-4 py-2 shadow-lg"
+      className="flex w-full items-center justify-between  gap-3 bg-card z-1000 rounded-lg border border-red-500/50  px-4 py-2 shadow-lg"
       role="alert"
     >
-      {/* Icon */}
-      <AlertTriangle className="h-5 w-5  shrink-0 text-red-500" />
+      <div className="gap-2 flex">
+        {/* Icon */}
+        <AlertTriangle className="h-5 w-5  shrink-0 text-red-500" />
 
-      {/* Text Content */}
-      <div className="text-sm space-y-1">
-        {errorMessage && <h3 className="font-semibold">{errorMessage}</h3>}
-        {errorDetail && (
-          <div className="text-muted-foreground">{errorDetail}</div>
-        )}
+        {/* Text Content */}
+        <div className="space-y-1">
+          {errorMessage && <h3 className="font-semibold">{errorMessage}</h3>}
+          {errorDetail && (
+            <div className="text-muted-foreground">{errorDetail}</div>
+          )}
+        </div>
       </div>
 
       {/* Close Button */}

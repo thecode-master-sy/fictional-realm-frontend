@@ -1,3 +1,13 @@
+export type ApiErrorResponse = {
+  data: null;
+  error: {
+    message: string;
+    code?: string;
+    fieldErrors?: Record<string, string[]>;
+  };
+  setCookieHeaders: string[];
+};
+
 export type User = {
   id: string;
   email: string;
@@ -26,15 +36,7 @@ export type SignUpSuccess = {
   setCookieHeaders: string[];
 };
 
-export type SignUpError = {
-  data: null;
-  error: {
-    message: string;
-    code?: string;
-    fieldErrors?: Record<string, string[]>;
-  };
-  setCookieHeaders: string[];
-};
+export type SignUpError = ApiErrorResponse;
 
 export type SignUpResponse = SignUpSuccess | SignUpError;
 
@@ -45,3 +47,23 @@ export type FormState<T> = {
   };
   message?: string;
 };
+
+export type LoginParams = {
+  email: string;
+  password: string;
+};
+
+export type LoginSuccess = {
+  data: {
+    redirect: boolean;
+    token: string;
+    url: string;
+    user: User;
+  };
+  error: null;
+  setCookieHeaders: string[];
+};
+
+export type LoginError = ApiErrorResponse;
+
+export type LoginResponse = LoginSuccess | LoginError;

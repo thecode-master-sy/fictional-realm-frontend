@@ -1,7 +1,7 @@
 "use server";
-import { FormState } from "../shared/types";
+import { FormState, LoginParams } from "../shared/types";
 import { CreateUserSchema, createUserSchema } from "./schema";
-import { createUser } from "../shared/data/auth";
+import { createUser, login } from "../shared/data/auth";
 import { cookies } from "next/headers";
 
 // 3. Keep the first parameter as 'prevState' when pairing with useActionState
@@ -25,6 +25,7 @@ export async function createUserAction(
     name: validatedFields.data.email.split("@")[0],
     email: validatedFields.data.email,
     password: validatedFields.data.password,
+    callbackURL: "http://localhost:3001",
   });
 
   if (response.error) {
@@ -50,4 +51,31 @@ export async function createUserAction(
   }
 
   return { success: true, message: "User has been created sucessfully" };
+}
+
+export async function loginUserAction(input: LoginParams) {
+  const response = await login(input);
+
+  if (response.error) {
+    return {
+      success: false,
+      message: response.error.message,
+    };
+  }
+
+  const cookieStore = await cookies();
+
+  for (const rawCookie of response.setCookieHeaders) {
+    const [nameValue, ...attributes] = rawCookie.split("; ");
+    const [name, value] = nameValue.split("=");
+
+    cookieStore.set(name, decodeURIComponent(value), {
+      httpOnly: attributes.some((a) => a.toLowerCase() === "httponly"),
+      secure: attributes.some((a) => a.toLowerCase() === "secure"),
+      sameSite: "lax",
+      path: "/",
+    });
+  }
+
+  return { success: true, message: "You have logged in sucessfully" };
 }

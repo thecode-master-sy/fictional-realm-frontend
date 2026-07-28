@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { Mail } from "lucide-react";
 
 const confirmEmailVariants = {
   visible: { opacity: 1, y: 0 },
@@ -46,7 +47,15 @@ export const ConfirmYourEmailComponent = ({
         </div>{" "}
         <div className="space-y-2">
           <Button size="lg" className={"w-full border border-zinc-200"}>
-            Check your inbox
+            <a
+              href="https://mail.google.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center w-full h-full justify-center"
+            >
+              <Mail className="mr-2 h-4 w-4" />
+              Check your inbox
+            </a>
           </Button>
           <Button
             className="w-full text-foreground cursor-pointer"

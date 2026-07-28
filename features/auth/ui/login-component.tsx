@@ -12,6 +12,10 @@ import {
 } from "@/components/ui/input-group";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { loginUserAction } from "../actions";
+import { showErrorToast } from "@/features/shared/ui/show-error";
+import { Spinner } from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
 
 const loginFormVariants = {
   visible: { opacity: 1, y: 0 },
@@ -23,9 +27,30 @@ const loginFormVariants = {
 
 export const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [pending, setPending] = useState(false);
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setPending(true);
+    e.preventDefault(); // Prevents automatic form reset
+    const formData = new FormData(e.currentTarget);
+
+    const response = await loginUserAction({
+      email: formData.get("email")?.toString() ?? "",
+      password: formData.get("password")?.toString() ?? "",
+    });
+    setPending(false);
+    if (!response.success) {
+      return showErrorToast({
+        errorDetail: response.message,
+      });
+    }
+
+    router.push("/");
   };
 
   return (
@@ -52,7 +77,7 @@ export const LoginComponent = () => {
       </div>
 
       <div className="max-w-112.5 w-full ">
-        <form className="w-full  space-y-4">
+        <form onSubmit={handleSubmit} className="w-full  space-y-4">
           {/* Email */}
           <div className="space-y-2">
             <Label htmlFor="email" className="font-medium text-base">
@@ -83,6 +108,7 @@ export const LoginComponent = () => {
               <InputGroupAddon align="inline-end">
                 <button
                   type="button"
+
                   onClick={togglePasswordVisibility}
                   className="cursor-pointer text-muted-foreground hover:text-foreground focus:outline-none"
                   aria-label={showPassword ? "Hide password" : "Show password"}
@@ -99,11 +125,12 @@ export const LoginComponent = () => {
 
           {/* Login Button */}
           <Button
+            disabled={pending}
             type="submit"
             size="lg"
             className="bg-accent-green w-full text-foreground cursor-pointer border border-black/20 text-base hover:bg-[#87c88d]"
           >
-            Login
+            {pending ? <Spinner /> : "Login"}
           </Button>
         </form>
 

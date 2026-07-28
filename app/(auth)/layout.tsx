@@ -14,7 +14,7 @@ export default function AuthLayout({
       </h2>
       {/* Left Column - Form */}
 
-      <section className="w-full flex flex-col space-y-8 items-center  min-h-screen justify-center">
+      <section className="w-full flex flex-col space-y-8 items-center  min-h-screen justify-center p-4">
         {children}
       </section>
 
