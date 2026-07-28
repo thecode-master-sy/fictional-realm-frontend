@@ -1,8 +1,11 @@
 import { CloudIcon } from "@/components/ui/cloud-icon";
 import Image from "next/image";
 
-
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+export default function AuthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="min-h-screen bg-background relative flex flex-col lg:flex-row">
       {/* Header - Desktop Logo */}
@@ -12,7 +15,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       {/* Left Column - Form */}
 
       <section className="w-full flex flex-col space-y-8 items-center  min-h-screen justify-center">
-         {children}
+        {children}
       </section>
 
       <div className="w-full hidden relative bg-accent-green lg:flex items-center justify-center overflow-hidden">
@@ -24,7 +27,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <CloudIcon className="absolute top-[22.5%] left-[30%] w-[90px]" />
         <CloudIcon className="absolute top-[8.75%] left-[80.25%] w-22.5" />
 
-
         <CloudIcon className="absolute top-[37.5%] left-[75%] w-17.5" />
 
         <CloudIcon className="absolute top-[80%] left-[4.5%] w-22.5" />
@@ -34,5 +36,5 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <CloudIcon className="absolute top-[67.75%] left-[70.25%] w-17.5" />
       </div>
     </div>
-  )
+  );
 }

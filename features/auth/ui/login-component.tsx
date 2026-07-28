@@ -10,7 +10,16 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
+import { motion } from "motion/react";
 import { useState } from "react";
+
+const loginFormVariants = {
+  visible: { opacity: 1, y: 0 },
+  hidden: {
+    opacity: 0,
+    y: -10,
+  },
+};
 
 export const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +29,19 @@ export const LoginComponent = () => {
   };
 
   return (
-    <>
+    <motion.div
+      transition={{
+        duration: 0.4,
+        delay: 0.2,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
+      variants={loginFormVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+
+      className="w-full flex flex-col items-center justify-center space-y-8"
+    >
       <div className="space-y-2">
         <h1 className="text-[24px] font-bold text-foreground tracking-[-1px] text-center">
           Login to your account
@@ -124,6 +145,6 @@ export const LoginComponent = () => {
           </a>
         </p>
       </div>
-    </>
+    </motion.div>
   );
 };
