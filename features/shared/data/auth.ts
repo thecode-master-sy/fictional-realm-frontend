@@ -11,29 +11,28 @@ import {
 } from "../types";
 import { parseValidationErrors } from "../utils";
 
+const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`;
+
 export async function createUser(
   params: SignUpParams,
 ): Promise<SignUpResponse> {
   try {
-    const response = await fetch(
-      "http://localhost:3000/api/auth/sign-up/email",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Origin: "http://localhost:3001",
-        },
-        credentials: "include", // sends/receives the session cookie cross-origin
-        body: JSON.stringify({
-          name: params.name,
-          email: params.email,
-          password: params.password,
-          image: params.image,
-          callbackURL: params.callbackURL,
-          rememberMe: params.rememberMe ?? true,
-        }),
+    const response = await fetch(`${BASE_URL}/auth/sign-up/email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "http://localhost:3001",
       },
-    );
+      credentials: "include", // sends/receives the session cookie cross-origin
+      body: JSON.stringify({
+        name: params.name,
+        email: params.email,
+        password: params.password,
+        image: params.image,
+        callbackURL: params.callbackURL,
+        rememberMe: params.rememberMe ?? true,
+      }),
+    });
 
     const data = await response.json();
 
@@ -74,21 +73,18 @@ export async function createUser(
 
 export async function login(params: LoginParams): Promise<LoginResponse> {
   try {
-    const response = await fetch(
-      "http://localhost:3000/api/auth/sign-in/email",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Origin: "http://localhost:3001",
-        },
-        credentials: "include", // sends/receives the session cookie cross-origin
-        body: JSON.stringify({
-          email: params.email,
-          password: params.password,
-        }),
+    const response = await fetch(`${BASE_URL}/auth/sign-in/email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "http://localhost:3001",
       },
-    );
+      credentials: "include", // sends/receives the session cookie cross-origin
+      body: JSON.stringify({
+        email: params.email,
+        password: params.password,
+      }),
+    });
 
     const data = await response.json();
 

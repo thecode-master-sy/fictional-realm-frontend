@@ -16,6 +16,7 @@ import { loginUserAction } from "../actions";
 import { showErrorToast } from "@/features/shared/ui/show-error";
 import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const loginFormVariants = {
   visible: { opacity: 1, y: 0 },
@@ -92,12 +93,12 @@ export const LoginComponent = () => {
               <Label htmlFor="password" className="text-base font-medium">
                 Password
               </Label>
-              <a
-                href="#"
+              <Link
+                href="/reset-password"
                 className="text-sm transition underline text-muted-foreground hover:text-foreground"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
             <InputGroup>
               <InputGroupInput

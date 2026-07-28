@@ -46,7 +46,10 @@ export const ConfirmYourEmailComponent = ({
           <p className="text-center">{"chinemeremnwaegerue@gmail.com"}</p>
         </div>{" "}
         <div className="space-y-2">
-          <Button size="lg" className={"w-full border border-zinc-200"}>
+          <Button
+            size="lg"
+            className={"w-full border border-zinc-200  text-base"}
+          >
             <a
               href="https://mail.google.com"
               target="_blank"
@@ -58,7 +61,7 @@ export const ConfirmYourEmailComponent = ({
             </a>
           </Button>
           <Button
-            className="w-full text-foreground cursor-pointer"
+            className="w-full text-foreground cursor-pointer text-base"
             variant={"link"}
             onClick={() => setStep("sign-up")}
           >
