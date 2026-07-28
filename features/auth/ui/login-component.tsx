@@ -67,7 +67,7 @@ export const LoginComponent = () => {
 
       className="w-full flex flex-col items-center justify-center space-y-8"
     >
-      <div className="space-y-2">
+      <div className="space-y-1">
         <h1 className="text-[24px] font-bold text-foreground tracking-[-1px] text-center">
           Login to your account
         </h1>
@@ -76,10 +76,10 @@ export const LoginComponent = () => {
         </p>
       </div>
 
-      <div className="max-w-112.5 w-full ">
-        <form onSubmit={handleSubmit} className="w-full  space-y-4">
+      <div className="max-w-108 w-full space-y-4">
+        <form onSubmit={handleSubmit} className="w-full  space-y-2">
           {/* Email */}
-          <div className="space-y-2">
+          <div className="space-y-1">
             <Label htmlFor="email" className="font-medium text-base">
               Email
             </Label>
@@ -87,7 +87,7 @@ export const LoginComponent = () => {
           </div>
 
           {/* Password */}
-          <div className="space-y-2">
+          <div className="space-y-1">
             <div className="flex items-center justify-between">
               <Label htmlFor="password" className="text-base font-medium">
                 Password
@@ -135,7 +135,7 @@ export const LoginComponent = () => {
         </form>
 
         {/* Divider */}
-        <div className="w-full max-w-md my-6 relative">
+        <div className="w-full max-w-md relative">
           <div
             className="absolute inset-0 flex items-center"
             aria-hidden="true"
@@ -143,7 +143,7 @@ export const LoginComponent = () => {
             <div className="w-full border-t border-zinc-200" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-[#F5F1E8] px-2 text-muted-foreground">
+            <span className="bg-background px-2 text-muted-foreground">
               Or continue with
             </span>
           </div>
@@ -162,7 +162,7 @@ export const LoginComponent = () => {
         </div>
 
         {/* Footer */}
-        <p className="w-full max-w-md text-center mt-4 text-muted-foreground">
+        <p className="w-full max-w-md text-center text-muted-foreground">
           Don&apos;t have an account?{" "}
           <a
             href="/signup"

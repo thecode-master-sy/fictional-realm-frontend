@@ -79,7 +79,7 @@ export const SignUpForm = ({
 
       className="w-full flex flex-col items-center justify-center space-y-8"
     >
-      <div className="space-y-2">
+      <div className="space-y-1">
         <h1 className="text-[24px] font-bold text-foreground tracking-[-1px] text-center">
           Create an account
         </h1>
@@ -88,10 +88,10 @@ export const SignUpForm = ({
         </p>
       </div>
 
-      <div className="max-w-112.5 w-full ">
-        <form onSubmit={handleSubmit} className="w-full  space-y-4">
+      <div className="max-w-108 w-full space-y-4">
+        <form onSubmit={handleSubmit} className="w-full  space-y-2">
           {/* Email */}
-          <div className="space-y-2">
+          <div className="space-y-1">
             <Label htmlFor="email" className="font-medium text-base">
               Email
             </Label>
@@ -102,7 +102,7 @@ export const SignUpForm = ({
           </div>
 
           {/* Password */}
-          <div className="space-y-2">
+          <div className="space-y-1">
             <Label htmlFor="password" className="text-base font-medium">
               Password
             </Label>
@@ -140,7 +140,7 @@ export const SignUpForm = ({
         </form>
 
         {/* Divider */}
-        <div className="w-full max-w-md my-6 relative">
+        <div className="w-full max-w-md relative">
           <div
             className="absolute inset-0 flex items-center"
             aria-hidden="true"
@@ -166,7 +166,7 @@ export const SignUpForm = ({
         </div>
 
         {/* Footer */}
-        <p className="w-full max-w-md text-center mt-4 text-muted-foreground">
+        <p className="w-full max-w-md text-center text-muted-foreground">
           Already have an account?{" "}
           <a
             href="/login"
