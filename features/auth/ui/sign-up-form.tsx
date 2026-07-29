@@ -18,7 +18,7 @@ import { showErrorToast } from "@/features/shared/ui/show-error";
 import { motion } from "motion/react";
 
 const initialFormState = {
-  success: false,
+  error: false,
   message: "",
 };
 
@@ -47,11 +47,11 @@ export const SignUpForm = ({
   useEffect(() => {
     const hasFieldErrors = state.errors && Object.keys(state.errors).length > 0;
 
-    if (!state.success && state.message && !hasFieldErrors) {
+    if (state.error && state.message && !hasFieldErrors) {
       showErrorToast({ errorDetail: state.message });
     }
 
-    if (state.success) {
+    if (!state.error) {
       setStep("confirm-email");
     }
   }, [state, setStep]);

@@ -1,5 +1,5 @@
-import { ResetPasswordComponent } from "@/features/auth/ui/reset-password-component";
+import { RequestPasswordResetComponent } from "@/features/auth/ui/request-password-reset";
 
 export default function ResetPasswordPage() {
-  return <ResetPasswordComponent />;
+  return <RequestPasswordResetComponent />;
 }

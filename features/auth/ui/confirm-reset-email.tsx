@@ -11,10 +11,12 @@ const confirmEmailVariants = {
   },
 };
 
-export const ConfirmYourEmailComponent = ({
+export const ConfirmResetPasswordEmail = ({
   setStep,
 }: {
-  setStep: React.Dispatch<React.SetStateAction<"sign-up" | "confirm-email">>;
+  setStep: React.Dispatch<
+    React.SetStateAction<"request-reset" | "check-email">
+  >;
 }) => {
   return (
     <motion.div
@@ -27,19 +29,18 @@ export const ConfirmYourEmailComponent = ({
       initial="hidden"
       animate="visible"
       exit="hidden"
-
       className="space-y-2 flex flex-col w-full justify-center items-center"
     >
       <div className="space-y-2">
         <h1 className="text-[24px] font-bold text-foreground tracking-[-1px] text-center">
-          Please confirm your email
+          Password reset email sent{" "}
         </h1>
       </div>
 
       <div className="max-w-108 w-full space-y-8">
         <div>
           <p className="text-muted-foreground text-center">
-            We have a sent a magic link to your inbox.{" "}
+            We have a sent a link to your inbox.{" "}
           </p>
           <p className="text-muted-foreground text-center">
             Please check your inbox at
@@ -64,9 +65,9 @@ export const ConfirmYourEmailComponent = ({
           <Button
             className="w-full text-foreground cursor-pointer text-base"
             variant={"link"}
-            onClick={() => setStep("sign-up")}
+            onClick={() => setStep("request-reset")}
           >
-            Back to sign up
+            Go back
           </Button>
         </div>
       </div>

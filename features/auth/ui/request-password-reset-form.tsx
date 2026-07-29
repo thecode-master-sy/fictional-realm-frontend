@@ -6,6 +6,10 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Mail } from "lucide-react";
+import { showErrorToast } from "@/features/shared/ui/show-error";
+import { useActionState, startTransition, useEffect } from "react";
+import { requestPasswordResetAction } from "../actions";
+import { SubmitButton } from "./submit-button";
 
 const resetPasswordVariants = {
   visible: { opacity: 1, y: 0 },
@@ -15,7 +19,44 @@ const resetPasswordVariants = {
   },
 };
 
-export const ResetPasswordComponent = () => {
+const initialFormState = {
+  error: false,
+  message: "",
+};
+
+export const RequestPasswordResetForm = ({
+  setStep,
+}: {
+  setStep: React.Dispatch<
+    React.SetStateAction<"request-reset" | "check-email">
+  >;
+}) => {
+  const [state, formAction] = useActionState(
+    requestPasswordResetAction,
+    initialFormState,
+  );
+
+  useEffect(() => {
+    const hasFieldErrors = state.errors && Object.keys(state.errors).length > 0;
+
+    if (state.error && state.message && !hasFieldErrors) {
+      showErrorToast({ errorDetail: state.message });
+    }
+
+    if (!state.error) {
+      setStep("check-email");
+    }
+  }, [state, setStep]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevents automatic form reset
+    const formData = new FormData(e.currentTarget);
+
+    startTransition(() => {
+      formAction(formData);
+    });
+  };
+
   return (
     <motion.div
       transition={{
@@ -39,15 +80,12 @@ export const ResetPasswordComponent = () => {
       </div>
 
       <div className="max-w-108 w-full">
-        <form className="space-y-2 w-full">
+        <form onSubmit={handleSubmit} className="space-y-2 w-full">
           <Input placeholder="Enter your email address" name="email" />
 
-          <Button
-            size="lg"
-            className={"w-full border border-zinc-200 text-base"}
-          >
+          <SubmitButton className="w-full text-base">
             Send reset link
-          </Button>
+          </SubmitButton>
           <Button
             className="w-full text-foreground cursor-pointer text-base"
             variant={"link"}

@@ -45,11 +45,16 @@ export const LoginComponent = () => {
       password: formData.get("password")?.toString() ?? "",
     });
     setPending(false);
-    if (!response.success) {
+
+    if (response.error || response.data == null) {
       return showErrorToast({
-        errorDetail: response.message,
+        errorDetail: response.error?.message,
       });
     }
+
+    const user = response.data.user;
+
+    localStorage.setItem("user", JSON.stringify(user));
 
     router.push("/");
   };
