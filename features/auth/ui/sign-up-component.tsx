@@ -10,7 +10,7 @@ export const SignUpComponent = () => {
   const [step, setStep] = useState<Step>("sign-up");
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" initial={false}>
       {step == "sign-up" ? (
         <SignUpForm setStep={setStep} key="sign-up" />
       ) : (

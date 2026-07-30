@@ -27,8 +27,7 @@ export const ConfirmYourEmailComponent = ({
       initial="hidden"
       animate="visible"
       exit="hidden"
-
-      className="space-y-2 flex flex-col w-full justify-center items-center"
+      className="space-y-2"
     >
       <div className="space-y-2">
         <h1 className="text-[24px] font-bold text-foreground tracking-[-1px] text-center">
@@ -36,7 +35,7 @@ export const ConfirmYourEmailComponent = ({
         </h1>
       </div>
 
-      <div className="max-w-108 w-full space-y-8">
+      <div className="max-w-80 w-full space-y-8">
         <div>
           <p className="text-muted-foreground text-center">
             We have a sent a magic link to your inbox.{" "}

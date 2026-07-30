@@ -10,7 +10,7 @@ export const RequestPasswordResetComponent = () => {
   const [step, setStep] = useState<Step>("request-reset");
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" initial={false}>
       {step == "request-reset" ? (
         <RequestPasswordResetForm setStep={setStep} key="request-reset" />
       ) : (

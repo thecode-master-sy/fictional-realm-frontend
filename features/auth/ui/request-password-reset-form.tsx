@@ -43,7 +43,7 @@ export const RequestPasswordResetForm = ({
       showErrorToast({ errorDetail: state.message });
     }
 
-    if (!state.error) {
+    if (!state.error && state.message != "") {
       setStep("check-email");
     }
   }, [state, setStep]);

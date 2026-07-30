@@ -51,7 +51,7 @@ export const SignUpForm = ({
       showErrorToast({ errorDetail: state.message });
     }
 
-    if (!state.error) {
+    if (!state.error && state.message != "") {
       setStep("confirm-email");
     }
   }, [state, setStep]);
@@ -68,7 +68,7 @@ export const SignUpForm = ({
   return (
     <motion.div
       transition={{
-        duration: 0.4,
+        duration: 0.3,
         delay: 0.2,
         ease: [0.25, 0.46, 0.45, 0.94],
       }}
